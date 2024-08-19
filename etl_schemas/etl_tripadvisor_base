@@ -1,0 +1,234 @@
+
+digraph  {
+layout = neato
+height = 1500
+height = 1750
+overlap = TRUE
+splines=true
+outputorder = edgesfirst
+
+1 [
+    pos = "0.0,0.0!"
+    label= <
+        <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+            <tr> <td PORT= "main"> <b>1 mainTipAdvisorPoi</b><br/><i>1 Main controler (.ipynb)</i></td> </tr>
+            <tr> <td>Used for invoking individual modules</td> </tr>
+            <tr> <td PORT= "IETL">Extract (E), Transform (T), Load (L), Invoke (I)</td> </tr>
+            <tr> <td PORT= "TRP_CAT">Categorize POI list of tags with TR framework</td> </tr>
+            
+           
+        </table>
+            >
+    shape=plain
+    fontsize = 11
+    fontname = "Roboto Light"
+    style=filled
+    color="#f37726ff"
+    pencolor="#616262ff"
+    ]
+    
+2 [
+    pos = "8.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>2 scrapp_tripadvisor_base_list_poi</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="scrapp_base_list">Scrapp base list of POI</td> </tr>
+                         <tr> <td PORT="transform_poi">Transform extend df</td> </tr>
+                         <tr> <td PORT="retrieve_df">Retrieve as df (name, url)</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+
+3 [
+    pos = "6.0,-2!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>3 TripAdvisor</b><br/><i>Web app</i></td> </tr>
+                         <tr> <td PORT="ta_sk_things_to_to">Subpage things to do in Slovakia</td> </tr>
+                         <tr> <td PORT="ta_sk_poi">Each POI's subpage</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+    
+    ]
+4 [
+    pos = "8.0,-4.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="tripadvisor_poi_details"> <b>4 scrapp_tripadvisor_poi_details</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="scrapp_tripadvisor_poi_details">Scrapp each POI subpage</td> </tr>
+                         <tr> <td PORT="retrieve_tripadvisor_poi_details">Retrieve each POI base data as df</td> </tr>
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+5 [
+    pos = "-8.0,-0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="transform_add_municipality_region_tripadavisor_poi"> <b>5 transform_add_municipality_region_tripadavisor_poi</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="transform5">Add municipality and region</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+6 [
+    pos = "-8.0,-4.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="head_gglGeocodePoi"> <b>6 gglGeocodePoi</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="gglGeocodePoi">Geocode POIs with address</td> </tr>
+                         <tr> <td PORT="retrieve_lalon">Retrive Google Maps data</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+    
+7 [
+    pos = "-8.0,-7.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="head_gglGeocodePoiWOaddress"> <b>7 gglGeocodePoiWOaddress</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="gglGeocodePoiWOaddress">Geocode POIs without address</td> </tr>
+                         <tr> <td PORT="retrieve_lalon">Retrive Google Maps data</td> </tr>
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+8 [
+    pos = "8.0,-7.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="head_get_gku_mun_id_for_ta_poi"> <b>8 get_gku_mun_id_for_ta_poi</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="get_gku_mun_id_for_ta_poi">Check penetration with gku municipality geometry</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+
+
+
+
+10 [
+    pos = "0.0,-3!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>db_schema_gtlab</b><br/><i>Database (PostGis DB)</i></td> </tr>
+                     <tr> <td><b>List of tables</b></td> </tr>
+                     <tr> <td PORT= "sk_pois_activities_tripadvisor_0723">sk_pois_activities_tripadvisor_0723</td> </tr>
+                     <tr> <td PORT= "sk_pois_activities_tripadvisor_0723_details">sk_pois_activities_tripadvisor_0723_details</td> </tr>
+                     <tr> <td PORT= "sk_pois_activities_tripadvisor_trp_categorization">sk_pois_activities_tripadvisor_trp_categorization</td> </tr>
+                    
+                     
+                     
+                     
+
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = "filled"
+            color="#ffffff"
+            pencolor = "#336791ff"
+           
+    
+    ]
+
+9 [
+    pos = "0.0,-7!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>sql_update_ta_poi_base_gku</b><br/><i>(.sql)</i></td> </tr>
+                     <tr> <td PORT= "sql_update_ta_poi_base_gku">Manual SQL updates of geocoding irregularities</td> </tr>
+                     
+                    
+                     
+                     
+                     
+
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = "filled"
+            color="#ffffff"
+            pencolor = "#336791ff"
+           
+    
+    ]
+
+1:IETL->2:scrapp_base_list[headlabel="IE1->2" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+2:scrapp_base_list->3:ta_sk_things_to_to[label="E2->3" headport="e" tailport="e" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dashed"]
+2:retrieve_df->10:sk_pois_activities_tripadvisor_0723[label="L2->10"   labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="filled"]
+4:scrapp_tripadvisor_poi_details->3:ta_sk_poi[label="E4->3" headport="e" tailport="e" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dashed"]
+4:retrieve_tripadvisor_poi_details->10:sk_pois_activities_tripadvisor_0723_details[label="L4->10"  labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="filled"]
+1:IETL->5:transform5[label="IT1->5"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+5:transform5->10:sk_pois_activities_tripadvisor_0723_details[headlabel="T5->10"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+1:IETL->6:gglGeocodePoi[headlabel="IE1->6"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dashed"]
+1:IETL->7:gglGeocodePoiWOaddress[headlabel="IE1->7"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dashed"]
+6:retrieve_lalon->10:sk_pois_activities_tripadvisor_0723_details[label="L6->10"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="filled"]
+7:retrieve_lalon->10:sk_pois_activities_tripadvisor_0723_details[label="L7->10"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="filled"]
+1:IETL->8:head_get_gku_mun_id_for_ta_poi[headlabel="IT1->8" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+8:get_gku_mun_id_for_ta_poi->10:sk_pois_activities_tripadvisor_0723_details[label="T8->10"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+9:sql_update_ta_poi_base_gku->10:sk_pois_activities_tripadvisor_0723_details[label="T9->10" headport="e" tailport="e" labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+1:TRP_CAT->10:sk_pois_activities_tripadvisor_trp_categorization[label="T1->10" tailport="e" headport="e" labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+}

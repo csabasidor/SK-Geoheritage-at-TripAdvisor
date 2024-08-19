@@ -1,0 +1,189 @@
+
+digraph  {
+layout = neato
+height = 1500
+height = 1750
+overlap = TRUE
+splines=true
+outputorder = edgesfirst
+
+1 [
+    pos = "-2.0,0.0!"
+    label= <
+        <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+            <tr> <td PORT= "main"> <b>1 main_SGUDS_sgs</b><br/><i>1 Main controler (.ipynb)</i></td> </tr>
+            <tr> <td>Used for invoking individual modules</td> </tr>
+            <tr> <td PORT= "IETL">Extract (E), Transform (T), Load (L), Invoke (I)</td> </tr>
+            <tr> <td><b>List of DFs:</b></td> </tr>
+            <TR><TD PORT="gpdf_from_arcgis">gpdf_from_arcgis</TD></TR>
+           
+        </table>
+            >
+    shape=plain
+    fontsize = 11
+    fontname = "Roboto Light"
+    style=filled
+    color="#f37726ff"
+    pencolor="#616262ff"
+    ]
+    
+2 [
+    pos = "8.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>2 call_arcgis_rest_service</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="call_mapserver">Call ArcGIS REST service</td> </tr>
+                         <tr> <td PORT="retrieve_gpdf">Retrieve as gpdf</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+3 [
+    pos = "8.0,-2.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td > <b>3 scrappSGUDS_vgl</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td port="scrap_web_app">Scrapp SGS details from web app</td> </tr>
+                         <tr> <td port="retrive_sgs_gpdf">Retrieve structured df</td> </tr>
+                         <tr> <td port="store_sgs_gpdf">Store in DB</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    ]
+
+4 [
+    pos = "12.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>4 ŠGÚDŠ</b><br/><i>ArcGIS mapserver</i></td> </tr>
+                     <tr> <td PORT="sguds_rest">VGL REST service</td> </tr>
+                     </table>
+                    >
+            shape = plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+            
+    ]
+5 [
+    pos = "12.1,-2.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>5 geology.sk</b></td> </tr>
+                     <tr> <td PORT="vgl_web_app"> <i>VGL Web App</i></td> </tr>
+                     <tr> <td>Registry of SGS details</td> </tr>
+                     </table>
+                    >
+            shape = plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+]
+6 [
+    pos = "-1.0,-4.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td > <b>6 Identify municipality</b><br/><i>module (.py) module (.py) for SQL</i></td> </tr>
+                         <tr> <td port="st_srid_transform">Transform SRID</td> </tr>
+                         <tr> <td port="st_within">Get municipalities ID via Postgis</td> </tr>
+                         <tr> <td port="store_municipalities_id">Store municipalities ID for SGS</td> </tr>
+                         <tr> <td port="update_municipalities_id">Update municipalities ID for SGS</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    ]
+
+7 [
+    pos = "-1.0,-6.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td > <b>7 Identify DMO</b><br/><i>module (.py) for SQL</i></td> </tr>
+                         <tr> <td port="st_srid_transform">Transform SRID</td> </tr>
+                         <tr> <td port="get_dmo_id">Get DMO ID</td> </tr>
+                         <tr> <td port="store_dmo_id">Store SGS's DMO ID</td> </tr>
+                         <tr> <td port="update_dmo_id">Update DMO ID via municipality ID</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    ]
+
+10 [
+    pos = "4.0,-3!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>db_schema_gtlab</b><br/><i>Database (PostGis DB)</i></td> </tr>
+                     <tr> <td><b>List of tables</b></td> </tr>
+                     <tr> <td PORT= "sk_sgs_vgl_sguds">sk_sgs_vgl_sguds</td> </tr>
+                     <tr> <td PORT= "sk_sgs_vgl_sguds_details">sk_sgs_vgl_sguds_details</td> </tr>
+                     <tr> <td PORT= "sk_sgs_vgl_municipality_ids">sk_sgs_vgl_municipality_ids</td> </tr>
+                     <tr> <td PORT= "sk_sgs_vgl_dmo_ids">sk_sgs_vgl_dmo_ids</td> </tr>
+                     
+                     
+                     <tr> <td><b>List of a joinable attributes</b></td> </tr>
+                     <tr> <td PORT= "col_sk_sgs_vgl_municipality_ids">sk_sgs_vgl_sguds.gku_municipality_id</td> </tr>
+                     <tr> <td PORT= "col_sk_sgs_vgl_dmo_ids">sk_sgs_vgl_sguds.dmo_id</td> </tr>
+                     
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = "filled"
+            color="#ffffff"
+            pencolor = "#336791ff"
+           
+    
+    ]
+
+
+
+
+
+    1:IETL->2:call_mapserver[headlabel="IE1->2" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+    1:IETL->3:scrap_web_app[headlabel="IE1->3" labeldistance=2 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+    
+    
+    2:call_mapserver->4:sguds_rest[label="E2->4" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dashed"]
+    3:scrap_web_app->5:vgl_web_app[label="E3->5" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dashed"]
+    
+    2:retrieve_gpdf->1:gpdf_from_arcgis[label="L2->1" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="filled"]
+    1:gpdf_from_arcgis->10:sk_sgs_vgl_sguds[label="L1->10" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="filled"]
+    3:store_sgs_gpdf->10:sk_sgs_vgl_sguds_details[label="L3->10" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="filled"]
+    6:store_municipalities_id->10:sk_sgs_vgl_municipality_ids[label="L6->10" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="filled"]
+    7:store_dmo_id->10:sk_sgs_vgl_dmo_ids[label="L7->10" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="filled"]
+    
+    6:update_municipalities_id->10:col_sk_sgs_vgl_municipality_ids[headlabel="T6->10" labeldistance=3 fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dotted"]
+    7:update_dmo_id->10:col_sk_sgs_vgl_dmo_ids[headlabel="T7->10" labeldistance=4 fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dotted"]
+    
+    1:IETL->6:st_srid_transform[headlabel="IT1->6" labeldistance=4 tailport="w" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dotted"]
+    1:IETL->7:update_dmo_id[headlabel="IT1->7" labeldistance=5 tailport="w" headport="w" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dotted"]
+    
+    
+}

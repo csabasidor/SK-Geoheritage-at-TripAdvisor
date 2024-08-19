@@ -1,0 +1,223 @@
+
+digraph  {
+layout = neato
+height = 1500
+height = 1750
+overlap = TRUE
+splines=true
+outputorder = edgesfirst
+
+1 [
+    pos = "-1.0,-2.0!"
+    label= <
+        <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+            <tr> <td PORT= "main"> <b>1 main_MinDOP_to_GKU</b><br/><i>1 Main controler (.ipynb)</i></td> </tr>
+            <tr> <td>Used for invoking individual modules</td> </tr>
+            <tr> <td>Extract (E), Transform (T), Load (L), Invoke (I)</td> </tr>
+            <tr> <td><b>List of DFs:</b></td> </tr>
+            <TR><TD PORT="gpdf_gku">gpdf_gku</TD></TR>
+            <TR><TD PORT="df_dmo">df_dmo</TD></TR>
+            <TR><TD PORT="df_members">df_members</TD></TR>
+            <TR><TD PORT="df_dmo_boundaries">df_dmo_boundaries</TD></TR>
+            <TR><TD PORT="df_dmo_muns_w_susr_codes">df_dmo_muns_w_susr_codes</TD></TR>
+        </table>
+            >
+    shape=plain
+    fontsize = 11
+    fontname = "Roboto Light"
+    style=filled
+    color="#f37726ff"
+    pencolor="#616262ff"
+    ]
+    
+2 [
+    pos = "6.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>2 call_wfs</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="call_wfs">Call WFS</td> </tr>
+                         <tr> <td PORT="retrieve_gpdf">Retrieve as gpdf</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+3 [
+    pos = "6.0,-2.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td > <b>3 get_dmo_base_data</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td port="scrap_pdfs">Scrapp pdf datalake of MINDOP's Registry of DMO</td> </tr>
+                         <tr> <td port="retrive_dmo_base_data">Retrieve structured df</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    ]
+4 [
+    pos = "6.0,-4.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>4 get_dmo_base_members</b><br/><i>module (.py)</i></td> </tr>
+                     <tr> <td port="extract_members">Extract member names from pdfs</td> </tr>
+                     <tr> <td PORT="extract_muncipalities">identify municipalities</td> </tr>
+                     <tr> <td port="retrieve_members_df">Retrieve structured df</td> </tr>
+                     
+                     
+                     </table>
+                    >
+                shape=plain
+                fontsize = 11
+                fontname = "Roboto Light"
+                style=filled
+                color="#ffd846ff"
+                pencolor = "#3671a1ff"
+    ]
+5 [
+    pos = "6.0,-6.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>5 clean_dmo_municipality_name</b><br/><i>module (.py)</i></td> </tr>
+                     <tr> <td PORT="clean_municipality_name">Reformat and clean municipality names</td> </tr>
+                     <tr> <td PORT="retrive_municipalties_raw">Retrieve df municipalities</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    ]
+6 [
+    pos = "6.0,-8.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>6 drop_duplicate_municipalities</b><br/><i>module (.py)</i></td> </tr>
+                     <tr> <td PORT="drop_duplicates">Drop duplicate municipalities in DMOs </td> </tr>
+                     <tr> <td PORT="retrive_unique_mun">Retrieve unique df with unique municipalities </td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    ]
+7 [
+    pos = "10.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>7 rpi.gov</b><br/><i>WFS</i></td> </tr>
+                     <tr> <td PORT="gku_w">GKU WFS </td> </tr>
+                     </table>
+                    >
+            shape = plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+            
+    ]
+8 [
+    pos = "10.1,-2.05!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>8 mindop.sk</b></td> </tr>
+                     <tr> <td PORT="mindop_pdf_lake"> <i>pdf datalake</i></td> </tr>
+                     <tr> <td>Registry of DMOs</td> </tr>
+                     </table>
+                    >
+            shape = plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+]
+9 [
+pos = "10.0,-4.0!"
+label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>9 Local host</b></td> </tr>
+                     <tr> <td PORT="pdf_dumps"><i>pdf dumps</i></td> </tr>
+                     <tr> <td>Each DMOs current extract</td> </tr>
+                     </table>
+                    >
+            shape = plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+    ]
+10 [
+    pos = "-6.0,-2.2!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>db_schema_gtlab</b><br/><i>database (PostGis DB)</i></td> </tr>
+                     <tr> <td><b>List of tables</b></td> </tr>
+                     <tr> <td PORT= "sk_municipalities_gku">sk_municipalities_gku</td> </tr>
+                     <tr> <td PORT= "sk_dmos_raw">sk_dmos_raw</td> </tr>
+                     <tr> <td PORT= "sk_dmo_members_raw">sk_dmo_members_raw</td> </tr>
+                     <tr> <td PORT= "sk_dmo_boundaries_raw">sk_dmo_boundaries_raw</td> </tr>
+                     <tr> <td PORT= "sk_dmo_boundaries_susr_codes">sk_dmo_boundaries_susr_codes</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = "filled"
+            color="#ffffff"
+            pencolor = "#336791ff"
+           
+    
+    ]
+
+
+
+
+
+    1:main->2:call_wfs[headlabel="IE1->2" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+    
+    1:main->3:scrap_pdfs[headlabel="IE1->3" labeldistance=2 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+    1:main->4:extract_members[headlabel="IE1->4" labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+    1:main->5:clean_municipality_name[headlabel="IT1->5" labeldistance=5 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+    1:main->6:drop_duplicates[headlabel="IT1->6" labeldistance=5  fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"] 
+    2:retrieve_gpdf->1:gpdf_gku[label= "
+L2->1" fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="solid"]
+    3:retrive_dmo_base_data->1:df_dmo[label= "L3->1" fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="solid"]
+    4:retrieve_members_df->1:df_members[label= "L4->1" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="solid"]
+    5:retrive_municipalties_raw->1:df_dmo_boundaries[label= "L5->1" labeldistance=5 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="solid"]
+    6:retrive_unique_mun->1:df_dmo_muns_w_susr_codes[label= "L6->1" labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="solid"]
+    
+
+    
+    2->7[label="E2->7" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dashed"]
+    3:scrap_pdfs->8:mindop_pdf_lake[label="E3->8" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dashed"]
+    4:extract_members->9:pdf_dumps[label="E4->9" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dashed"]
+
+    
+    8:mindop_pdf_lake->9:pdf_dumps[label="L" fontname="Roboto Light" fontsize = 15 arrowsize=0.5, headport="e", tailport="e",style="solid"]
+    
+    
+
+    
+    1:gpdf_gku->10:sk_municipalities_gku[label="L" fontname="Roboto Light" fontsize = 15 constraint=false, arrowsize=0.5, style="solid"]
+    1:df_dmo->10:sk_dmos_raw[constraint=false, arrowsize=0.5,style="solid"]
+    1:df_members->10:sk_dmo_members_raw[constraint=false, arrowsize=0.5,style="solid"]
+    1:df_dmo_boundaries->10:sk_dmo_boundaries_raw[constraint=false, arrowsize=0.5, style="solid"]
+    1:df_dmo_muns_w_susr_codes->10:sk_dmo_boundaries_susr_codes[arrowsize=0.5, style="solid"]
+    
+}

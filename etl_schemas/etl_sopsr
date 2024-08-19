@@ -1,0 +1,150 @@
+
+digraph  {
+layout = neato
+height = 1500
+height = 1750
+overlap = TRUE
+splines=true
+outputorder = edgesfirst
+
+1 [
+    pos = "0.0,0.0!"
+    label= <
+        <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+            <tr> <td PORT= "main"> <b>1 main_SOPSR</b><br/><i>1 Main controler (.ipynb)</i></td> </tr>
+            <tr> <td>Used for invoking individual modules</td> </tr>
+            <tr> <td PORT= "IETL">Extract (E), Transform (T), Load (L), Invoke (I)</td> </tr>
+            <tr> <td><b>List of DFs:</b></td> </tr>
+            <TR><TD PORT="gpdf_from_wfs">gpdf from WFS</TD></TR>
+           
+        </table>
+            >
+    shape=plain
+    fontsize = 11
+    fontname = "Roboto Light"
+    style=filled
+    color="#f37726ff"
+    pencolor="#616262ff"
+    ]
+    
+2 [
+    pos = "8.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>2 call_wfs</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="call_wfs">Call WFS</td> </tr>
+                         <tr> <td PORT="retrieve_gpdf">Retrieve as gpdf</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+
+3 [
+    pos = "12.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>3 SOPSR Geoserver</b><br/><i>WFS service (layers)</i></td> </tr>
+                         <tr> <td PORT="mchu">chranene_objekty:chranene_uzemia_mchu</td> </tr>
+                         <tr> <td PORT="vchu">chranene_objekty:chranene_uzemia_vchu</td> </tr>
+                         <tr> <td PORT="np_s_op">sz:chranene_uzemia_np_s_op</td> </tr>
+                         <tr> <td PORT="uev">chranene_objekty:chranene_uzemia_uev</td> </tr>
+                         <tr> <td PORT="chvu">chranene_objekty:chranene_uzemia_chvu</td> </tr>
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+    
+    ]
+4 [
+    pos = "1.0,-4.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="get_sopsr_ids"> <b>4 get_sopsr_ids</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="assigin_sopsr_id">Assign each SGS relation to Protected Site</td> </tr>
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+    
+    
+
+
+
+
+
+10 [
+    pos = "8.0,-3!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>db_schema_gtlab</b><br/><i>Database (PostGis DB)</i></td> </tr>
+                     <tr> <td><b>List of tables</b></td> </tr>
+                     <tr> <td PORT= "sk_mchu_sps_sopsr">sk_mchu_sps_sopsr</td> </tr>
+                     <tr> <td PORT= "sk_vchu_lps_sopsr">sk_vchu_lps_sopsr</td> </tr>
+                     <tr> <td PORT= "sk_np_w_pz_sopsr">sk_np_w_pz_sopsr</td> </tr>
+                     <tr> <td PORT= "sk_uev_teui_sopsr">sk_uev_teui_sopsr</td> </tr>
+                     <tr> <td PORT= "sk_chvu_bpa_sopsr">sk_chvu_bpa_sopsr</td> </tr>
+                     
+                     
+                     <tr> <td><b>List of a joinable attributes</b></td> </tr>
+                     <tr> <td PORT= "aobjectid_sk_mchu_sps_sopsr">sk_sgs_vgl_sguds.objectid_sk_mchu_sps_sopsr</td> </tr>
+                     <tr> <td PORT= "asiteid_sk_vchu_lps_sopsr">sk_sgs_vgl_sguds.siteid_sk_vchu_lps_sopsr</td> </tr>
+                     <tr> <td PORT= "agml_id_sk_np_w_pz_sopsr">sk_sgs_vgl_sguds.gml_id_sk_np_w_pz_sopsr</td> </tr>
+                     <tr> <td PORT= "asiteid_sk_uev_teui_sopsr">sk_sgs_vgl_sguds.siteid_sk_uev_teui_sopsr</td> </tr>
+                     <tr> <td PORT= "asiteid_sk_chvu_bpa_sopsr">sk_sgs_vgl_sguds.siteid_sk_chvu_bpa_sopsr</td> </tr>
+
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = "filled"
+            color="#ffffff"
+            pencolor = "#336791ff"
+           
+    
+    ]
+
+1:IETL->2:call_wfs[headlabel="IE1->2" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+2:call_wfs->3:mchu[label="E2->3" fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="dashed"]
+2:call_wfs->3:vchu[arrowsize=0.5 style="dashed"]
+2:call_wfs->3:np_s_op[arrowsize=0.5 style="dashed"]
+2:call_wfs->3:uev[arrowsize=0.5 style="dashed"]
+2:call_wfs->3:chvu[arrowsize=0.5 style="dashed"]
+
+1:gpdf_from_wfs->10:sk_mchu_sps_sopsr[xlabel="L1->10"  fontname="Roboto Light" fontsize = 12 arrowsize=0.5 style="filled"]
+1:gpdf_from_wfs->10:sk_vchu_lps_sopsr[fontsize = 12 arrowsize=0.5 style="filled"]
+1:gpdf_from_wfs->10:sk_np_w_pz_sopsr[fontsize = 12 arrowsize=0.5 style="filled"]
+1:gpdf_from_wfs->10:sk_uev_teui_sopsr[fontsize = 12 arrowsize=0.5 style="filled"]
+1:gpdf_from_wfs->10:sk_chvu_bpa_sopsr[fontsize = 12 arrowsize=0.5 style="filled"]
+
+1:IETL->4:get_sopsr_ids[headlabel="IT->4" tailport="w" headport="w" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+
+4:assigin_sopsr_id->10:aobjectid_sk_mchu_sps_sopsr[taillabel="T4->10" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+4:assigin_sopsr_id->10:asiteid_sk_vchu_lps_sopsr[arrowsize=0.5 style="dotted"]
+4:assigin_sopsr_id->10:agml_id_sk_np_w_pz_sopsr[arrowsize=0.5 style="dotted"]
+4:assigin_sopsr_id->10:asiteid_sk_uev_teui_sopsr[arrowsize=0.5 style="dotted"]
+4:assigin_sopsr_id->10:asiteid_sk_chvu_bpa_sopsr[arrowsize=0.5 style="dotted"]
+
+
+
+
+}

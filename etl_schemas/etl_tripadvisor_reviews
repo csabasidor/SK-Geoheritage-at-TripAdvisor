@@ -1,0 +1,187 @@
+
+digraph  {
+layout = neato
+height = 1500
+height = 1750
+overlap = TRUE
+splines=true
+outputorder = edgesfirst
+
+1 [
+    pos = "0.0,0.0!"
+    label= <
+        <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+            <tr> <td PORT= "main"> <b>1 mainTipAdvisorPoi</b><br/><i>1 Main controler (.ipynb)</i></td> </tr>
+            <tr> <td>Used for invoking individual modules</td> </tr>
+            <tr> <td PORT= "IETL">Extract (E), Transform (T), Load (L), Invoke (I)</td> </tr>
+            
+            
+           
+        </table>
+            >
+    shape=plain
+    fontsize = 11
+    fontname = "Roboto Light"
+    style=filled
+    color="#f37726ff"
+    pencolor="#616262ff"
+    ]
+    
+2 [
+    pos = "8.0,0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>2 scrapp_ta_reviews_w_prox</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="scrapp_ta_reviews_w_prox">Scrapp each review as raw text</td> </tr>
+                         <tr> <td PORT="retrieve_df">Retrieve as df (poi_id, review_raw)</td> </tr>
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+
+3 [
+    pos = "6.0,-2!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td> <b>3 TripAdvisor</b><br/><i>Web app</i></td> </tr>
+                         <tr> <td PORT="ta_sk_poi">Each POI's subpage</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = filled
+            color="#c2f0ee"
+            pencolor = "#c2f0ee"
+    
+    ]
+4 [
+    pos = "8.0,-4.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="transform_raw_reviews"> <b>4 transform_raw_reviews</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="transform_raw_reviews_df">Transform raw text to df</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+5 [
+    pos = "8.0,-7.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="identify_lang"> <b>5 identify_lang</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="identify_lang_out">Identify language of review via langdetect and langid</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+
+
+6 [
+    pos = "-8.0,-0.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="ggl_translate_en"> <b>6 ggl_translate_en</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="ggl_translate_en_out">Translate non English reviews via Google Translate API</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+
+    
+7 [
+    pos = "-8.0,-4.0!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                         <tr> <td PORT="whole_review_sentiment_analysis"> <b>7 whole_review_sentiment_analysis</b><br/><i>module (.py)</i></td> </tr>
+                         <tr> <td PORT="whole_review_sentiment_analysis_out">Identify polarity via selected models</td> </tr>
+                         
+                         
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style=filled
+            color="#ffd846ff"
+            pencolor = "#3671a1ff"
+    
+    ]
+
+
+
+10 [
+    pos = "0.0,-3!"
+    label=<
+                     <table border="1" cellborder="0" cellspacing="0" cellpadding="1">
+                     <tr> <td> <b>db_schema_gtlab</b><br/><i>Database (PostGis DB)</i></td> </tr>
+                     <tr> <td><b>List of tables</b></td> </tr>
+                     <tr> <td PORT= "sk_ta_geosites_reviews_raw">sk_ta_geosites_reviews_raw</td> </tr>
+                     <tr> <td PORT= "sk_ta_geosites_reviews">sk_ta_geosites_reviews</td> </tr>
+                    
+                     
+                     
+                     
+
+                     </table>
+                    >
+            shape=plain
+            fontsize = 11
+            fontname = "Roboto Light"
+            style = "filled"
+            color="#ffffff"
+            pencolor = "#336791ff"
+           
+    
+    ]
+
+
+
+1:IETL->2:scrapp_ta_reviews_w_prox[headlabel="IE1->2" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+2:scrapp_ta_reviews_w_prox->3:ta_sk_poi[label="E2->3"  headport=e, tailport=e labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dashed"]
+2:retrieve_df->10:sk_ta_geosites_reviews_raw[label="L1->10"   labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="filled"]
+1:IETL->4:transform_raw_reviews[headlabel="IT1->4" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+4:transform_raw_reviews->10:sk_ta_geosites_reviews[label="T4->10"  labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+1:IETL->5:identify_lang[headlabel="IT1->5" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+5:identify_lang_out->10:sk_ta_geosites_reviews[headlabel="T5->10"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+1:IETL->6:ggl_translate_en[headlabel="IT1->6" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+6:ggl_translate_en_out->10:sk_ta_geosites_reviews[headlabel="T6->10"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="dotted"]
+1:IETL->7:whole_review_sentiment_analysis[headlabel="IT1->7" labeldistance=3 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+7:whole_review_sentiment_analysis_out->10:sk_ta_geosites_reviews[headlabel="T7->10"  labeldistance=4 fontname="Roboto Light" fontsize = 11 arrowsize=0.5 style="tapered"]
+}
